@@ -1,9 +1,12 @@
 package com.bmdb.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -14,6 +17,8 @@ public class Movie {
 	private int year;
 	private String rating;
 	private String director;
+//	@OneToMany(mappedBy="movie")
+//	private List<Credit> credits;
 	
 	public Movie(int id, String title, int year, String rating, String director) {
 		super();
@@ -67,6 +72,14 @@ public class Movie {
 	public void setDirector(String director) {
 		this.director = director;
 	}
+
+//	public List<Credit> getCredits() {
+//		return credits;
+//	}
+//
+//	public void setCredits(List<Credit> credits) {
+//		this.credits = credits;
+//	}
 
 	@Override
 	public String toString() {
