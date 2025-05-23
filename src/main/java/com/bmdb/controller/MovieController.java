@@ -39,5 +39,31 @@ public class MovieController {
 		public Movie add(@RequestBody Movie movie) {
 			return movieRepo.save(movie);
 	}
+	
+	@PutMapping("/{id}")
+	public void update(@PathVariable int id, @RequestBody Movie movie) {
+		if (id != movie.getId()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Movie id mismatch vs URL.");
+		}
+		else if (movieRepo.existsById(movie.getId())) {
+			movieRepo.save(movie);
+		}
+		else {
+			throw new ResponseStatusException(
+					HttpStatus.NOT_FOUND, "Movie not found for id "+id);
+		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable int id) {
+		if (movieRepo.existsById(id)) {
+			movieRepo.deleteById(id);
+		}
+		else {
+			throw new ResponseStatusException(
+					HttpStatus.NOT_FOUND, "Movie not found for id "+id);
+		}
+	}
+	
 }
 
