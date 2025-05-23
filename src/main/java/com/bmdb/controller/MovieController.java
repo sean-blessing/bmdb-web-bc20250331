@@ -36,7 +36,7 @@ public class MovieController {
 	}
 	
 	@PostMapping("")
-		public Movie add(@RequestBody Movie movie) {
+	public Movie add(@RequestBody Movie movie) {
 			return movieRepo.save(movie);
 	}
 	
